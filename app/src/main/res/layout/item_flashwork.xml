@@ -4,7 +4,8 @@
     android:id="@+id/flash_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
     android:paddingTop="8dp">
 
     <LinearLayout

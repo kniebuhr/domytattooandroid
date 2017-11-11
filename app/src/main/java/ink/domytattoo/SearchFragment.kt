@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class BlankFragment : Fragment() {
+class SearchFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -22,8 +22,8 @@ class BlankFragment : Fragment() {
 //        private val ARG_PARAM2 = "param2"
 //
 //        // TODO: Rename and change types and number of parameters
-//        fun newInstance(param1: String, param2: String): BlankFragment {
-//            val fragment = BlankFragment()
+//        fun newInstance(param1: String, param2: String): SearchFragment {
+//            val fragment = SearchFragment()
 //            val args = Bundle()
 //            args.putString(ARG_PARAM1, param1)
 //            args.putString(ARG_PARAM2, param2)
