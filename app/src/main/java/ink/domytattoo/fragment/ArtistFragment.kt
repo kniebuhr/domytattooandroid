@@ -11,21 +11,17 @@ import android.widget.Toast
 import ink.domytattoo.R
 import ink.domytattoo.adapter.ArtistAdapter
 import ink.domytattoo.adapter.FlashAdapter
-import ink.domytattoo.rest.provider.SearchService
-import ink.domytattoo.rest.response.Model
+import ink.domytattoo.rest.service.SearchService
+import ink.domytattoo.rest.response.SearchModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_artist.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import kotlinx.android.synthetic.main.fragment_flash.*
 
 class ArtistFragment : Fragment() {
 
-
-    var mRecyclerView: RecyclerView? = null
     var mView : View? = null
-    var mFlashAdapter : FlashAdapter? = null
 
     val searchService by lazy {
         SearchService.create()
@@ -57,7 +53,7 @@ class ArtistFragment : Fragment() {
     }
 
 
-    private fun setupRecyclerView(artists: List<Model.SearchArtistResponse>){
+    private fun setupRecyclerView(artists: List<SearchModel.Artist>){
         val mRecyclerView = artist_recycler_view
         mRecyclerView.adapter = ArtistAdapter(artists, context)
         val layoutManager = LinearLayoutManager(activity)

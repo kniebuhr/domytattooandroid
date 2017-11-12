@@ -1,6 +1,6 @@
-package ink.domytattoo.rest.provider
+package ink.domytattoo.rest.service
 
-import ink.domytattoo.rest.response.Model
+import ink.domytattoo.rest.response.SearchModel
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -14,7 +14,10 @@ import retrofit2.http.Path
 interface SearchService {
 
     @GET("searchTattooArtists/{search}")
-    fun searchTattooArtists(@Path("search") search : String) : Observable<List<Model.SearchArtistResponse>>
+    fun searchTattooArtists(@Path("search") search : String) : Observable<List<SearchModel.Artist>>
+
+    @GET("searchFlashworks/{styleId}")
+    fun searchFlashworks(@Path("styleId") styleId : String) : Observable<List<SearchModel.Flashwork>>
 
     companion object {
         fun create(): SearchService {

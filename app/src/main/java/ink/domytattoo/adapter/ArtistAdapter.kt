@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ink.domytattoo.R
-import ink.domytattoo.rest.response.Model
+import ink.domytattoo.rest.response.SearchModel
 import kotlinx.android.synthetic.main.item_artist_search.view.*
 
 /**
  * Created by knieb on 12/11/2017.
  */
-class ArtistAdapter(private val artists : List<Model.SearchArtistResponse>,
+class ArtistAdapter(private val artists : List<SearchModel.Artist>,
                     private val context : Context) : Adapter<ArtistAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
@@ -35,7 +35,7 @@ class ArtistAdapter(private val artists : List<Model.SearchArtistResponse>,
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
-        fun bindView(artist: Model.SearchArtistResponse){
+        fun bindView(artist: SearchModel.Artist){
             val name = itemView.item_artist_name
             val user = itemView.item_artist_user
             val photo = itemView.item_artist_photo

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
-    android:paddingTop="8dp">
+    android:paddingBottom="8dp">
 
     <LinearLayout
         android:layout_weight="1"
@@ -21,6 +21,7 @@
             android:background="@color/black2">
 
             <ImageView
+                android:scaleType="centerCrop"
                 android:id="@+id/flash_image_one"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
@@ -78,6 +79,7 @@
             android:background="@color/black2">
 
             <ImageView
+                android:scaleType="centerCrop"
                 android:id="@+id/flash_image_two"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
