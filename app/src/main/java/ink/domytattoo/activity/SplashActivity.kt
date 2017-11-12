@@ -1,9 +1,10 @@
-package ink.domytattoo
+package ink.domytattoo.activity
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import ink.domytattoo.R
 
 class SplashActivity : AppCompatActivity() {
 
@@ -14,7 +15,7 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             startActivity(Intent(applicationContext, LoginActivity::class.java))
             finish()
-        }, 3000)
+        }, 2000)
 
     }
 }

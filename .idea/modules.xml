@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DoMyTattoo.iml" filepath="$PROJECT_DIR$/DoMyTattoo.iml" />
+      <module fileurl="file://C:\Users\knieb\AndroidStudioProjects\domytattooandroid\DoMyTattoo.iml" filepath="C:\Users\knieb\AndroidStudioProjects\domytattooandroid\DoMyTattoo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\knieb\AndroidStudioProjects\domytattooandroid\app\app.iml" filepath="C:\Users\knieb\AndroidStudioProjects\domytattooandroid\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/domytattooandroid.iml" filepath="$PROJECT_DIR$/domytattooandroid.iml" />
     </modules>
   </component>
 </project>
