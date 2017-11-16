@@ -11,13 +11,14 @@
         android:background="@drawable/bg_white">
 
         <EditText
+            android:id="@+id/search"
             android:textSize="14sp"
             android:padding="16dp"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:hint="Tatuador, estilo, localização"
+            android:hint="Nome ou usuário"
             android:background="@null"/>
 
         <LinearLayout

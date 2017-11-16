@@ -6,12 +6,15 @@
     android:layout_marginTop="8dp"
     android:layout_marginRight="8dp"
     android:layout_marginLeft="8dp"
-    android:background="@color/black2">
+    android:background="@color/black3">
     
     <ImageView
+        android:id="@+id/image"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        android:src="@color/black3"/>
+        android:scaleType="centerCrop"
+        android:background="@color/blue"
+        android:src="@drawable/ic_menu_camera"/>
 
     <LinearLayout
         android:layout_marginTop="4dp"
@@ -73,17 +76,21 @@
             android:text="teste com texto grande e tal, vou exagerar um pouco para ficar com mais linhas para ver se ta tudo ok, qualquer coisa para ficar gnrade e etc, preciso de mais uma linha, e pronto"/>
 
         <LinearLayout
+            android:id="@+id/price_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="28dp"
-                android:layout_height="15dp"
-                android:src="@color/white"/>
+                android:visibility="gone"
+                android:id="@+id/message_icon"
+                android:layout_width="wrap_content"
+                android:scaleType="fitXY"
+                android:layout_height="17dp"
+                android:src="@drawable/ic_email_white_24px"/>
 
             <TextView
-                android:id="@+id/status"
+                android:id="@+id/price"
                 android:gravity="right"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -97,7 +104,7 @@
 
         <LinearLayout
             android:visibility="gone"
-            android:id="@+id/price_container"
+            android:id="@+id/input_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/black3"
@@ -105,7 +112,7 @@
             android:padding="4dp">
 
             <EditText
-                android:id="@+id/price"
+                android:id="@+id/price_input"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

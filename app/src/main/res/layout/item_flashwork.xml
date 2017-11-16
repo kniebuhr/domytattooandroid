@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="8dp"
-    android:paddingRight="8dp"
     android:paddingBottom="8dp">
 
     <LinearLayout
@@ -24,8 +23,7 @@
                 android:scaleType="centerCrop"
                 android:id="@+id/flash_image_one"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@color/blue"/>
+                android:layout_height="150dp"/>
 
             <LinearLayout
                 android:layout_marginTop="4dp"
@@ -44,72 +42,14 @@
                 <ImageView
                     android:id="@+id/flash_auction_one"
                     android:layout_marginLeft="8dp"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@color/white"/>
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_gavel_white_24px"/>
 
             </LinearLayout>
 
             <TextView
                 android:id="@+id/flash_price_one"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginBottom="4dp"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                android:textColor="@color/white"
-                android:text="R$ 1500,00"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginLeft="8dp"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:id="@+id/flash_card_two"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/black2">
-
-            <ImageView
-                android:scaleType="centerCrop"
-                android:id="@+id/flash_image_two"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@color/blue"/>
-
-            <LinearLayout
-                android:layout_marginTop="4dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/flash_artist_two"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:text="rodferod"/>
-
-                <ImageView
-                    android:id="@+id/flash_auction_two"
-                    android:layout_marginLeft="8dp"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@color/white"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/flash_price_two"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"

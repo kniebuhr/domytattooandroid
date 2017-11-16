@@ -10,14 +10,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import ink.domytattoo.R
 import ink.domytattoo.adapter.ArtistAdapter
-import ink.domytattoo.adapter.FlashAdapter
 import ink.domytattoo.rest.service.SearchService
 import ink.domytattoo.rest.response.SearchModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_artist.*
-import kotlinx.android.synthetic.main.fragment_flash.*
 
 class ArtistFragment : Fragment() {
 
@@ -33,12 +31,32 @@ class ArtistFragment : Fragment() {
         disposable?.dispose()
     }
 
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        search_button.setOnClickListener {
+            if(!search.text.toString().isNullOrBlank()){
+                disposable =
+                        searchService.searchTattooArtists(search.text.toString())
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(
+                                        { result -> setupRecyclerView(result)
+                                        },
+                                        { error -> Toast.makeText(context, error.localizedMessage, Toast.LENGTH_SHORT).show() }
+                                )
+            } else {
+                Toast.makeText(context, "Digite algo no campo de busca", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         mView = inflater!!.inflate(R.layout.fragment_artist, container, false)
 
         disposable =
-                searchService.searchTattooArtists("a")
+                searchService.searchTattooArtists("")
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(

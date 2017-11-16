@@ -1,32 +1,32 @@
 package ink.domytattoo.fragment
 
 import android.content.Intent
-import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
+import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import ink.domytattoo.Constants
 import ink.domytattoo.R
-import ink.domytattoo.activity.FlashworkActivity
-import ink.domytattoo.adapter.FlashAdapter
-import ink.domytattoo.rest.response.FlashworkModel
-import ink.domytattoo.rest.service.FlashworkService
+import ink.domytattoo.activity.OrderActivity
+import ink.domytattoo.adapter.OrderAdapter
+import ink.domytattoo.rest.response.OrderModel
+import ink.domytattoo.rest.service.OrderService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_flash.*
+import kotlinx.android.synthetic.main.fragment_quotes_client.*
 
-
-
-class FlashworkFragment : Fragment() {
-
+/**
+ * Created by knieb on 15/11/2017.
+ */
+class OrderFragment : Fragment() {
     var mView : View? = null
 
-    val flashworkService by lazy {
-        FlashworkService.create()
+    val orderService by lazy {
+        OrderService.create()
     }
 
     var disposable: Disposable? = null
@@ -38,10 +38,10 @@ class FlashworkFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        mView = inflater!!.inflate(R.layout.fragment_flash, container, false)
+        mView = inflater!!.inflate(R.layout.fragment_quotes_client, container, false)
 
         disposable =
-                flashworkService.getRandomFlashworks()
+                orderService.getCustomerOrders("59d16e0f7b79910004d4666d")
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -53,17 +53,17 @@ class FlashworkFragment : Fragment() {
         return mView
     }
 
-    private fun setupRecyclerView(flashworks: List<FlashworkModel.Flashwork>){
-        val mRecyclerView = flash_recycler_view
-        mRecyclerView.adapter = FlashAdapter(flashworks, context, object : FlashAdapter.onClicked {
-            override fun onFlashClicked(flash: FlashworkModel.Flashwork) {
-                var intent = Intent(context, FlashworkActivity::class.java)
-                intent.putExtra(Constants().EXTRA_FLASHWORK, flash)
+    private fun setupRecyclerView(quotes: List<OrderModel.Quote>){
+        val mRecyclerView = quote_recycler_view
+        mRecyclerView.adapter = OrderAdapter(quotes, context, object : OrderAdapter.onClicked {
+            override fun onQuoteClicked(quote: OrderModel.Quote) {
+                var intent = Intent(context, OrderActivity::class.java)
+                intent.putExtra(Constants().EXTRA_QUOTE, quote)
                 startActivity(intent)
             }
         })
-        val layoutManager = GridLayoutManager(activity, 2)
-        layoutManager.isMeasurementCacheEnabled = false
+        val layoutManager = LinearLayoutManager(activity)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         mRecyclerView.layoutManager = layoutManager
     }
 }
