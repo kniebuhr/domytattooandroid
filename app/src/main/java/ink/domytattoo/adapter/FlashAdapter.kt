@@ -64,7 +64,7 @@ class FlashAdapter (private val flashworks : List<FlashworkModel.Flashwork>,
             val auction = itemView.flash_auction_one
             val card = itemView.flash_card_one
 
-            ImageHelper(image).execute(flash.images[0].url)
+            if(!flash.images.isEmpty()) ImageHelper(image).execute(flash.images[0].url)
             artist.text = flash.tattooArtist.name
             price.text = format.format(flash.price)
             auction.visibility = if (flash.isAuction) View.VISIBLE else View.GONE

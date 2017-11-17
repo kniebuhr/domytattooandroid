@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#333</color>
     <color name="colorAccent">#fff</color>
     <color name="blackAlpha">#88000000</color>
+    <color name="blackAlphaDarker">#AA000000</color>
     <color name="black0">#000</color>
     <color name="black1">#111</color>
     <color name="black2">#222</color>

@@ -16,6 +16,9 @@ interface SearchService {
     @GET("searchTattooArtists/{search}")
     fun searchTattooArtists(@Path("search") search : String) : Observable<List<SearchModel.Artist>>
 
+    @GET("getRandomTattooArtists")
+    fun getRandomTattooArtists() : Observable<List<SearchModel.Artist>>
+
     @GET("searchFlashworks/{styleId}")
     fun searchFlashworks(@Path("styleId") styleId : String) : Observable<List<SearchModel.Flashwork>>
 

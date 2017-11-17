@@ -1,6 +1,7 @@
 package ink.domytattoo.rest.service
 
 import ink.domytattoo.rest.request.SignInBody
+import ink.domytattoo.rest.request.SignUpBody
 import ink.domytattoo.rest.response.AccountModel
 import io.reactivex.Observable
 import retrofit2.Retrofit
@@ -17,6 +18,9 @@ interface AccountService {
 
     @POST("signin/")
     fun signin(@Body body : SignInBody) : Observable<AccountModel.SignIn>
+
+    @POST("signup/")
+    fun signup(@Body body : SignUpBody) : Observable<AccountModel.SignIn>
 
     companion object {
         fun create(): AccountService {

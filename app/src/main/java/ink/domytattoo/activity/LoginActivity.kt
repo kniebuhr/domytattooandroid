@@ -34,6 +34,10 @@ class LoginActivity : AppCompatActivity() {
         var login = login_username
         var password = login_password
 
+        login_signup.setOnClickListener {
+            startActivity(Intent(applicationContext, SignUpActivity::class.java))
+        }
+
         login_button.setOnClickListener{
             if(validate(login.text.toString(), password.text.toString())){
 

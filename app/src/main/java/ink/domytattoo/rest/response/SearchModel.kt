@@ -1,5 +1,7 @@
 package ink.domytattoo.rest.response
 
+import java.io.Serializable
+
 /**
  * Created by knieb on 11/11/2017.
  */
@@ -14,7 +16,7 @@ object SearchModel {
         var expireDate : String,
         var __v: Int,
         var images : List<Image>
-    )
+    ) : Serializable
     data class Artist(
         var _id : String,
         var isCustomer : Boolean,
@@ -30,18 +32,18 @@ object SearchModel {
         var state : String,
         var country : String,
         var bio : String
-    )
+    ) : Serializable
     data class Phone (
         var number: String,
         var whatsapp: Boolean
-    )
+    ) : Serializable
     data class Style (
         var _id : String,
         var name : String,
         var __v : Int
-    )
+    ) : Serializable
     data class Image (
         var url : String,
         var _id : String
-    )
+    ) : Serializable
 }

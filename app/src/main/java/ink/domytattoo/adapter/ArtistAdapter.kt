@@ -14,12 +14,22 @@ import kotlinx.android.synthetic.main.item_artist_search.view.*
  * Created by knieb on 12/11/2017.
  */
 class ArtistAdapter(private val artists : List<SearchModel.Artist>,
-                    private val context : Context) : Adapter<ArtistAdapter.ViewHolder>() {
+                    private val context : Context,
+                    val clickListener: onClicked) : Adapter<ArtistAdapter.ViewHolder>() {
+
+    companion object {
+        var mClickListener: onClicked? = null
+    }
+
+    open interface onClicked{
+        fun onArtistClicked(artist : SearchModel.Artist)
+    }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val artist = artists[position]
 
         holder?.let {
+            mClickListener = clickListener
             it.bindView(artist)
         }
     }
@@ -36,6 +46,12 @@ class ArtistAdapter(private val artists : List<SearchModel.Artist>,
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
         fun bindView(artist: SearchModel.Artist){
+
+            itemView.setOnClickListener {
+                if(mClickListener !=  null)
+                    mClickListener!!.onArtistClicked(artist)
+            }
+
             val name = itemView.item_artist_name
             val user = itemView.item_artist_user
             val photo = itemView.item_artist_photo
@@ -45,7 +61,7 @@ class ArtistAdapter(private val artists : List<SearchModel.Artist>,
 
             name.text = artist.name
             instagram.text = artist.instagram
-            localion.text = "São Paulo"
+            localion.text = artist.city + "/" + artist.state
             photo.setImageResource(R.drawable.ic_menu_camera)
             user.text = artist.userName
             styles.text = "Blackwork"

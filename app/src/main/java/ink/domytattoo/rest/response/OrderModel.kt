@@ -64,4 +64,8 @@ object OrderModel {
         var canceledByTattooArtist : Boolean,
         var viewed : Boolean
     ) : Serializable
+
+    data class NegotiationRequest (
+        var tattooArtist: String
+    ) : Serializable
 }

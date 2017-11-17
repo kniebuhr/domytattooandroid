@@ -3,6 +3,8 @@
     package="ink.domytattoo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -24,7 +26,9 @@
         <activity android:name=".activity.FlashworkActivity" />
         <activity android:name=".activity.ArtistProfileActivity" />
         <activity android:name=".activity.OrderActivity" />
-        <activity android:name=".activity.ChatActivity"></activity>
+        <activity android:name=".activity.ChatActivity" />
+        <activity android:name=".activity.NewOrderActivity" />
+        <activity android:name=".activity.SignUpActivity"></activity>
     </application>
 
 </manifest>

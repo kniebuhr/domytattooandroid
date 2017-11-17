@@ -1,5 +1,6 @@
 package ink.domytattoo.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -8,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import ink.domytattoo.Constants
 import ink.domytattoo.R
+import ink.domytattoo.activity.ArtistProfileActivity
 import ink.domytattoo.adapter.ArtistAdapter
 import ink.domytattoo.rest.service.SearchService
 import ink.domytattoo.rest.response.SearchModel
@@ -56,7 +59,7 @@ class ArtistFragment : Fragment() {
         mView = inflater!!.inflate(R.layout.fragment_artist, container, false)
 
         disposable =
-                searchService.searchTattooArtists("")
+                searchService.getRandomTattooArtists()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -73,7 +76,13 @@ class ArtistFragment : Fragment() {
 
     private fun setupRecyclerView(artists: List<SearchModel.Artist>){
         val mRecyclerView = artist_recycler_view
-        mRecyclerView.adapter = ArtistAdapter(artists, context)
+        mRecyclerView.adapter = ArtistAdapter(artists, context, object : ArtistAdapter.onClicked{
+            override fun onArtistClicked(artist: SearchModel.Artist) {
+                var intent = Intent(activity, ArtistProfileActivity::class.java)
+                intent.putExtra(Constants().EXTRA_ARTIST, artist)
+                startActivity(intent)
+            }
+        })
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         mRecyclerView.layoutManager = layoutManager
