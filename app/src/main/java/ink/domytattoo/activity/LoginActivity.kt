@@ -1,5 +1,6 @@
 package ink.domytattoo.activity
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -21,6 +22,8 @@ class LoginActivity : AppCompatActivity() {
         AccountService.create()
     }
     var disposable: Disposable? = null
+
+    var progress: ProgressDialog? = null
 
     override fun onPause() {
         super.onPause()
@@ -44,14 +47,19 @@ class LoginActivity : AppCompatActivity() {
                 var pattern = Pattern.compile("/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+\$/")
                 var matcher = pattern.matcher(login.text.toString())
 
+                progress = ProgressDialog(this)
+                progress!!.setTitle("Carregando")
+                progress!!.setMessage("Aguarde...")
+                progress!!.setCancelable(false) // disable dismiss by tapping outside of the dialog
+                progress!!.show()
+
                 if(matcher.matches()){
                     disposable =
                         accountService.signin(SignInBody(login.text.toString(), "", password.text.toString()))
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
-                                { result -> onResult(result)
-                                },
+                                { result -> onResult(result) },
                                 { error -> Toast.makeText(baseContext, error.localizedMessage, Toast.LENGTH_SHORT).show() }
                             )
                 } else {
@@ -62,9 +70,10 @@ class LoginActivity : AppCompatActivity() {
                             .subscribe(
                                 { result -> onResult(result)
                                 },
-                                { error -> Toast.makeText(baseContext, error.localizedMessage, Toast.LENGTH_SHORT).show() }
+                                { error ->  onError(error.localizedMessage) }
                             )
                 }
+
             } else {
                 Toast.makeText(baseContext, "Preencha os campos de login", Toast.LENGTH_SHORT).show()
             }
@@ -72,6 +81,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun onResult(result : AccountModel.SignIn){
+        progress!!.hide()
         var sharedPref = this.getPreferences(MODE_PRIVATE)
         var editor = sharedPref.edit()
         editor.putString(Constants().EXTRA_USERNAME, result.userName)
@@ -80,6 +90,11 @@ class LoginActivity : AppCompatActivity() {
         editor.commit()
 
         startActivity(Intent(applicationContext, FragmentActivity::class.java))
+    }
+
+    fun onError(message: String){
+        progress!!.hide()
+        Toast.makeText(baseContext, message, Toast.LENGTH_SHORT).show()
     }
 
     fun validate(stringLogin : String, stringPass : String): Boolean{
