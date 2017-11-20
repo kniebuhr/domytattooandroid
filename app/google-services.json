@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "216573737754",
+    "firebase_url": "https://do-my-tattoo.firebaseio.com",
+    "project_id": "do-my-tattoo",
+    "storage_bucket": "do-my-tattoo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216573737754:android:5f6a5338b323f471",
+        "android_client_info": {
+          "package_name": "ink.domytattoo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216573737754-c16n68afh16tfigdlos2i4qed5k93do1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ink.domytattoo",
+            "certificate_hash": "950c6902b5f2e8add991e75d2b8b5d15cb137864"
+          }
+        },
+        {
+          "client_id": "216573737754-hu7f28ah099d9cmpl3f1g82gl7l0qm79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP3_AlWH4lz_mcD-kdcupHfGUdsZ15dDg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216573737754-hu7f28ah099d9cmpl3f1g82gl7l0qm79.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
