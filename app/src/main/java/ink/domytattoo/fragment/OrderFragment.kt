@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import ink.domytattoo.Constants
 import ink.domytattoo.R
+import ink.domytattoo.SharedPreferencesHelper
 import ink.domytattoo.activity.OrderActivity
 import ink.domytattoo.adapter.OrderAdapter
 import ink.domytattoo.rest.response.OrderModel
@@ -41,7 +42,7 @@ class OrderFragment : Fragment() {
         mView = inflater!!.inflate(R.layout.fragment_quotes_client, container, false)
 
         disposable =
-                orderService.getCustomerOrders("59d16e0f7b79910004d4666d")
+                orderService.getCustomerOrders(SharedPreferencesHelper.getInstance().getString(Constants().EXTRA_USER_ID))
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(

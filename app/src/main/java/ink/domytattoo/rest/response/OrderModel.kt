@@ -13,7 +13,8 @@ object OrderModel {
         var place : String,
         var description : String,
         var images : List<Image>,
-        var size : Size,
+        var height : Float,
+        var width : Float,
         var negotiations : List<Negotiation>
     ) : Serializable
 
@@ -25,11 +26,6 @@ object OrderModel {
     data class Image (
         var url: String,
         var _id: String
-    ) : Serializable
-
-    data class Size (
-        var height : Float,
-        var width : Float
     ) : Serializable
 
     data class Negotiation (

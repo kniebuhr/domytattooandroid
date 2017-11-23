@@ -18,4 +18,8 @@ object AccountModel {
         var number: String,
         var whatsapp : Boolean
     )
+
+    data class Images(
+        var images : List<String>
+    )
 }

@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 /**
  * Created by knieb on 11/11/2017.
@@ -21,6 +22,9 @@ interface AccountService {
 
     @POST("signup/")
     fun signup(@Body body : SignUpBody) : Observable<AccountModel.SignIn>
+
+    @GET("getInstaWorks/{id}")
+    fun getInstaWorks(@Path("id") artistId : String) : Observable<AccountModel.Images>
 
     companion object {
         fun create(): AccountService {

@@ -49,6 +49,8 @@ class OrderAdapter(private val quotes : List<OrderModel.Quote>,
 
         fun bindView(quote: OrderModel.Quote){
 
+            if(quote.negotiations.isEmpty()) return
+
             itemView.setOnClickListener {
                 if(mClickListener !=  null)
                     mClickListener!!.onQuoteClicked(quote)
@@ -68,7 +70,7 @@ class OrderAdapter(private val quotes : List<OrderModel.Quote>,
 
             if (quote.images.isNotEmpty()) ImageHelper(image).execute(quote.images[0].url) else image.setImageResource(R.drawable.ic_menu_camera)
             username.text = quote.negotiations[0].tattooArtist.name
-            dimensions.text = quote.size.height.toString() + " x " + quote.size.width.toString()
+            dimensions.text = quote.height.toString() + " x " + quote.width.toString()
             description.text = quote.description
             place.text = quote.place
 

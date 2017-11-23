@@ -16,6 +16,5 @@ class MyFirebaseInstanceIDService: FirebaseInstanceIdService() {
     override fun onTokenRefresh() {
         var refreshedToken = FirebaseInstanceId.getInstance().token
         Log.e(TAG, "Refreshed token:"+refreshedToken)
-
     }
 }

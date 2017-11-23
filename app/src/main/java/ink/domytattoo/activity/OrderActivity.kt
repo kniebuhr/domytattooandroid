@@ -41,8 +41,8 @@ class OrderActivity : AppCompatActivity() {
         if(quote!!.images.isNotEmpty()) ImageHelper(order_photo).execute(quote!!.images[0].url)
         artist.text = quote!!.negotiations[0].tattooArtist.name
         place.text = quote!!.place
-        height.text = quote!!.size.height.toString()
-        width.text = quote!!.size.width.toString()
+        height.text = quote!!.height.toString()
+        width.text = quote!!.width.toString()
         description.text = quote!!.description
     }
 

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import ink.domytattoo.Constants
 import ink.domytattoo.R
+import ink.domytattoo.SharedPreferencesHelper
 import ink.domytattoo.rest.request.SignInBody
 import ink.domytattoo.rest.response.AccountModel
 import ink.domytattoo.rest.service.AccountService
@@ -34,8 +35,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        var login = login_username
-        var password = login_password
+        val login = login_username
+        val password = login_password
 
         login_signup.setOnClickListener {
             startActivity(Intent(applicationContext, SignUpActivity::class.java))
@@ -44,13 +45,13 @@ class LoginActivity : AppCompatActivity() {
         login_button.setOnClickListener{
             if(validate(login.text.toString(), password.text.toString())){
 
-                var pattern = Pattern.compile("/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+\$/")
-                var matcher = pattern.matcher(login.text.toString())
+                val pattern = Pattern.compile("/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+\$/")
+                val matcher = pattern.matcher(login.text.toString())
 
                 progress = ProgressDialog(this)
                 progress!!.setTitle("Carregando")
                 progress!!.setMessage("Aguarde...")
-                progress!!.setCancelable(false) // disable dismiss by tapping outside of the dialog
+                progress!!.setCancelable(false)
                 progress!!.show()
 
                 if(matcher.matches()){
@@ -73,7 +74,6 @@ class LoginActivity : AppCompatActivity() {
                                 { error ->  onError(error.localizedMessage) }
                             )
                 }
-
             } else {
                 Toast.makeText(baseContext, "Preencha os campos de login", Toast.LENGTH_SHORT).show()
             }
@@ -81,19 +81,23 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun onResult(result : AccountModel.SignIn){
-        progress!!.hide()
-        var sharedPref = this.getPreferences(MODE_PRIVATE)
-        var editor = sharedPref.edit()
-        editor.putString(Constants().EXTRA_USERNAME, result.userName)
-        editor.putBoolean(Constants().EXTRA_IS_CUSTOMER, result.isCustomer)
-        editor.putString(Constants().EXTRA_USER_ID  , result._id)
-        editor.commit()
+        progress!!.dismiss()
 
-        startActivity(Intent(applicationContext, FragmentActivity::class.java))
+        SharedPreferencesHelper.initializeInstance(this)
+
+        if(result.isCustomer){
+            SharedPreferencesHelper.getInstance().putString(Constants().EXTRA_USER_ID, result._id)
+            SharedPreferencesHelper.getInstance().putString(Constants().EXTRA_USERNAME, result.userName)
+            SharedPreferencesHelper.getInstance().putBoolean(Constants().EXTRA_IS_CUSTOMER, result.isCustomer)
+            startActivity(Intent(applicationContext, FragmentActivity::class.java))
+            finish()
+        } else {
+            Toast.makeText(this, "Lamento, mas só funciona para clientes", Toast.LENGTH_SHORT)
+        }
     }
 
     fun onError(message: String){
-        progress!!.hide()
+        progress!!.dismiss()
         Toast.makeText(baseContext, message, Toast.LENGTH_SHORT).show()
     }
 
@@ -103,7 +107,4 @@ class LoginActivity : AppCompatActivity() {
         }
         return false
     }
-
-
-
 }

@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 /**
  * Created by knieb on 11/11/2017.
@@ -18,6 +19,9 @@ interface FlashworkService {
 
     @GET("getRandomFlashworks")
     fun getRandomFlashworks() : Observable<List<FlashworkModel.Flashwork>>
+
+    @GET("getArtistFlashworks/{id}")
+    fun getArtistFlashworks(@Path("id") artistId : String) : Observable<List<FlashworkModel.Flashwork>>
 
     companion object {
         fun create(): FlashworkService {

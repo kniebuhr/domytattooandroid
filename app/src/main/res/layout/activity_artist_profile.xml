@@ -56,6 +56,7 @@
                             android:src="@color/white"/>
 
                         <TextView
+                            android:maxLines="1"
                             android:textColor="@color/white"
                             android:id="@+id/artist_name"
                             android:layout_width="wrap_content"
@@ -70,6 +71,7 @@
                             android:src="@color/white"/>
 
                         <TextView
+                            android:maxLines="1"
                             android:textColor="@color/white"
                             android:id="@+id/artist_styles"
                             android:layout_width="wrap_content"
@@ -90,6 +92,7 @@
                             android:src="@color/white"/>
 
                         <TextView
+                            android:maxLines="1"
                             android:textColor="@color/white"
                             android:id="@+id/artist_instagram"
                             android:layout_width="wrap_content"
@@ -104,6 +107,7 @@
                             android:src="@color/white"/>
 
                         <TextView
+                            android:maxLines="1"
                             android:textColor="@color/white"
                             android:id="@+id/artist_location"
                             android:layout_width="wrap_content"
