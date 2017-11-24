@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import ink.domytattoo.Constants
 import ink.domytattoo.R
@@ -19,7 +20,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_artist_profile.*
-import kotlinx.android.synthetic.main.fragment_flash.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class ArtistProfileActivity : AppCompatActivity() {
@@ -30,9 +30,9 @@ class ArtistProfileActivity : AppCompatActivity() {
         FlashworkService.create()
     }
 
-    val accountService by lazy {
-        AccountService.create()
-    }
+//    val accountService by lazy {
+//        AccountService.create()
+//    }
 
     var disposable: Disposable? = null
 
@@ -62,15 +62,15 @@ class ArtistProfileActivity : AppCompatActivity() {
                                 { error -> Toast.makeText(this, error.localizedMessage, Toast.LENGTH_SHORT).show() }
                         )
 
-        disposable =
-                accountService.getInstaWorks(artist!!._id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { result -> setupInstagram(result.images)
-                        },
-                        { error -> Toast.makeText(this, error.localizedMessage, Toast.LENGTH_SHORT).show() }
-                )
+//        disposable =
+//                accountService.getInstaWorks(artist!!._id)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(
+//                        { result -> setupInstagram(result.images)
+//                        },
+//                        { error -> Toast.makeText(this, error.localizedMessage, Toast.LENGTH_SHORT).show() }
+//                )
 
         order_button.setOnClickListener {
             var intent = Intent(this, NewOrderActivity::class.java)
@@ -90,6 +90,8 @@ class ArtistProfileActivity : AppCompatActivity() {
         artist_location.text = artist!!.city + "/" + artist!!.state
         artist_instagram.text = artist!!.instagram
         artist_bio.text = artist!!.bio
+
+        if(artist!!.bio.isNullOrBlank()) artist_bio.visibility = View.GONE
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

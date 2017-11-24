@@ -28,7 +28,7 @@ class FlashworkActivity : AppCompatActivity() {
         if(flash.isAuction){
             price_text.text = "Último lance:"
             price_container.setBackgroundResource(R.color.blue)
-            price_value.text = format.format(if (flash.allBids.isEmpty()) 0 else flash.lastBid.price)
+            price_value.text = format.format(if (flash.allBids.isEmpty()) 0 else flash.currentBid.price)
             flashwork_button.text = "Fazer lance"
         } else {
             price_text.text = "Preço:"

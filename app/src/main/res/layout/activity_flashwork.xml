@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:text="teste"/>
+                    android:text="Preço:"/>
 
                 <TextView
                     android:id="@+id/price_value"
@@ -50,7 +50,7 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="24sp"
-                    android:text="R$ 1500,00"/>
+                    android:text="R$ 0,00"/>
 
             </LinearLayout>
 
@@ -76,7 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
-                        android:text="teste"/>
+                        android:text="-"/>
 
                 </LinearLayout>
 
@@ -96,7 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
-                        android:text="teste"/>
+                        android:text="-"/>
 
                 </LinearLayout>
 
@@ -116,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
-                        android:text="teste"/>
+                        android:text="-"/>
 
                 </LinearLayout>
 
@@ -124,8 +124,7 @@
                     android:id="@+id/description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac dignissim purus. Sed lobortis, nulla id tincidunt auctor, lacus elit dictum odio, sed pulvinar massa ante at felis. Donec sed enim iaculis est ornare posuere et elementum mi. Duis elementum risus eget urna lacinia vulputate. Maecenas interdum justo tortor, vel. "/>
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
 

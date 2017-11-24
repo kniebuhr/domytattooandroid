@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_flash.*
 
 
 
+
 class FlashworkFragment : Fragment() {
 
     var mView : View? = null

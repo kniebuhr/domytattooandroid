@@ -17,14 +17,13 @@ import android.net.Uri
 import java.io.FileNotFoundException
 import android.provider.MediaStore.MediaColumns
 import ink.domytattoo.Constants
-import ink.domytattoo.rest.response.OrderModel
 import ink.domytattoo.rest.response.SearchModel
 import okhttp3.MediaType
 import java.io.File
 import okhttp3.RequestBody
 import okhttp3.MultipartBody
 import android.os.Build
-import android.content.pm.PackageManager
+import ink.domytattoo.SharedPreferencesHelper
 
 
 class NewOrderActivity : AppCompatActivity() {
@@ -75,53 +74,57 @@ class NewOrderActivity : AppCompatActivity() {
         }
 
         order_button.setOnClickListener {
-            var list = ArrayList<MultipartBody.Part>()
-            var image : MultipartBody.Part? = null
-            val name = RequestBody.create(MediaType.parse("text/plain"), "photos")
+            if(validate()){
+                var list = ArrayList<MultipartBody.Part>()
 
-            if(imageOnePath != null){
-                val file = File(imageOnePath)
-                val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
-//                image = MultipartBody.Part.createFormData("photos", file.getName(), reqFile)
-                list.add(MultipartBody.Part.createFormData("photos", file.getName(), reqFile))
+                if(imageOnePath != null){
+                    val file = File(imageOnePath)
+                    val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
+                    list.add(MultipartBody.Part.createFormData("photos", file.getName(), reqFile))
+                }
+                if(imageTwoPath != null){
+                    val file = File(imageTwoPath)
+                    val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
+                    list.add(MultipartBody.Part.createFormData("photos", file.getName(), reqFile))
+                }
+                if(imageThreePath != null){
+                    val file = File(imageThreePath)
+                    val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
+                    list.add(MultipartBody.Part.createFormData("photos", file.getName(), reqFile))
+                }
+
+                val customerId = RequestBody.create(MediaType.parse("multipart/form-data"), SharedPreferencesHelper.getInstance().getString(Constants().EXTRA_USER_ID))
+                val place = RequestBody.create(MediaType.parse("multipart/form-data"),place.text.toString())
+                val description = RequestBody.create(MediaType.parse("multipart/form-data"), description.text.toString())
+                val artist = RequestBody.create(MediaType.parse("multipart/form-data"), artist!!._id)
+
+                disposable =
+                        orderService.createNewOrder(if (list.isNotEmpty()) list else null,
+                                customerId,
+                                height.text.toString().toFloat(),
+                                width.text.toString().toFloat(),
+                                description,
+                                place,
+                                artist)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(
+                                        { result -> onResult()
+                                        },
+                                        { error -> Toast.makeText(baseContext, error.localizedMessage, Toast.LENGTH_SHORT).show() }
+                                )
+
+            } else {
+                Toast.makeText(this, "Preencha os campos", Toast.LENGTH_SHORT).show()
             }
-            if(imageTwoPath != null){
-                val file = File(imageTwoPath)
-                val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
-//                image = MultipartBody.Part.createFormData("photos", file.getName(), reqFile)
-                list.add(MultipartBody.Part.createFormData("photos", file.getName(), reqFile))
-            }
-            if(imageThreePath != null){
-                val file = File(imageThreePath)
-                val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
-//                image = MultipartBody.Part.createFormData("photos", file.getName(), reqFile)
-                list.add(MultipartBody.Part.createFormData("photos", file.getName(), reqFile))
-            }
-
-
-
-            val customerId = RequestBody.create(MediaType.parse("multipart/form-data"), "59d16e0f7b79910004d4666d")
-            val place = RequestBody.create(MediaType.parse("multipart/form-data"),place.text.toString())
-            val description = RequestBody.create(MediaType.parse("multipart/form-data"), description.text.toString())
-            val artist = RequestBody.create(MediaType.parse("multipart/form-data"), artist!!._id)
-
-            disposable =
-                orderService.createNewOrder(if (list.isNotEmpty()) list else null,
-                        customerId,
-                        height.text.toString().toFloat(),
-                        width.text.toString().toFloat(),
-                        description,
-                        place,
-                        artist)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                { result -> onResult()
-                                },
-                                { error -> Toast.makeText(baseContext, "Erro ao enviar orçamento", Toast.LENGTH_SHORT).show() }
-                        )
-
         }
+    }
+
+    fun validate() : Boolean{
+        return !place.text.toString().isNullOrBlank() &&
+                !description.text.toString().isNullOrBlank() &&
+                !height.text.toString().isNullOrBlank() &&
+                !width.text.toString().isNullOrBlank()
     }
 
     fun onResult(){

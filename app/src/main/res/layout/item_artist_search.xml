@@ -20,7 +20,7 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginRight="16dp"
-            android:background="@color/white" />
+            android:src="@drawable/profile_placeholder" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -47,7 +47,8 @@
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_marginRight="4dp"
-                    android:src="@color/white"/>
+                    android:tint="@color/white"
+                    android:src="@drawable/ic_user"/>
 
                 <TextView
                     android:maxLines="1"
@@ -62,7 +63,8 @@
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_marginRight="4dp"
-                    android:src="@color/white"/>
+                    android:tint="@color/white"
+                    android:src="@drawable/ic_paintbrush"/>
 
                 <TextView
                     android:maxLines="1"
@@ -83,7 +85,8 @@
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_marginRight="4dp"
-                    android:src="@color/white"/>
+                    android:tint="@color/white"
+                    android:src="@drawable/ic_instagram"/>
 
                 <TextView
                     android:maxLines="1"
@@ -98,7 +101,8 @@
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_marginRight="4dp"
-                    android:src="@color/white"/>
+                    android:tint="@color/white"
+                    android:src="@drawable/ic_location"/>
 
                 <TextView
                     android:maxLines="1"

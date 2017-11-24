@@ -54,7 +54,6 @@ class ArtistAdapter(private val artists : List<SearchModel.Artist>,
 
             val name = itemView.item_artist_name
             val user = itemView.item_artist_user
-            val photo = itemView.item_artist_photo
             val instagram = itemView.item_artist_instagram
             val localion = itemView.item_artist_location
             val styles = itemView.item_artist_styles
@@ -62,7 +61,6 @@ class ArtistAdapter(private val artists : List<SearchModel.Artist>,
             name.text = artist.name
             instagram.text = artist.instagram
             localion.text = artist.city + "/" + artist.state
-            photo.setImageResource(R.drawable.ic_menu_camera)
             user.text = artist.userName
             styles.text = "Blackwork"
         }

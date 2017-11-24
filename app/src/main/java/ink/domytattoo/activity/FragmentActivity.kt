@@ -17,7 +17,6 @@ class FragmentActivity : AppCompatActivity() {
     private val fragmentFlash = FlashworkFragment()
     private val fragmentArtist = ArtistFragment()
     private val fragmentOrder = OrderFragment()
-    private val fragmentConfig = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,10 +40,6 @@ class FragmentActivity : AppCompatActivity() {
                 R.id.nav_quotes -> {
                     title = "Orçamentos"
                     changeFragment(fragmentOrder)
-                    return@OnNavigationItemSelectedListener true
-                }
-                R.id.nav_config -> {
-                    title = "Configurações"
                     return@OnNavigationItemSelectedListener true
                 }
             }

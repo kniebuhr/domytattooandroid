@@ -16,7 +16,7 @@ object FlashworkModel{
         var isAuction : Boolean,
         var expireDate : String?,
         var allBids : List<Bid>,
-        var currenctBid : Bid,
+        var currentBid : Bid,
         var lastBid : Bid,
         var images : List<Image>
     ) : Serializable

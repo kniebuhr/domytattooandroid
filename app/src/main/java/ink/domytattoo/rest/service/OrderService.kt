@@ -1,5 +1,6 @@
 package ink.domytattoo.rest.service
 
+import ink.domytattoo.rest.request.ChatBody
 import ink.domytattoo.rest.response.OrderModel
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -26,6 +27,9 @@ interface OrderService {
                        @Part("description") description : RequestBody,
                        @Part("place") place : RequestBody,
                        @Part("artist") artist : RequestBody) : Observable<OrderModel.Quote>
+
+    @POST("newChat")
+    fun createNewChat(@Body body : ChatBody) : Observable<String>
 
     companion object {
         fun create(): OrderService {
